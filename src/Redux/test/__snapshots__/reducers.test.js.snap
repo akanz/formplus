@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`All reducers should handle CHANGE_CATEGORY 1`] = `
+Object {
+  "Data": Array [],
+  "categoryfield": undefined,
+  "datefield": "default",
+  "error": "",
+  "loading": false,
+  "orderfield": "default",
+  "searchfield": "",
+}
+`;
+
+exports[`All reducers should handle CHANGE_DATE_FIELD 1`] = `
+Object {
+  "Data": Array [],
+  "categoryfield": "all",
+  "datefield": undefined,
+  "error": "",
+  "loading": false,
+  "orderfield": "default",
+  "searchfield": "",
+}
+`;
+
+exports[`All reducers should handle CHANGE_ORDER_FIELD 1`] = `
+Object {
+  "Data": Array [],
+  "categoryfield": "all",
+  "datefield": "default",
+  "error": "",
+  "loading": false,
+  "orderfield": undefined,
+  "searchfield": "",
+}
+`;
+
+exports[`All reducers should handle CHANGE_SEARCH_FIELD 1`] = `
+Object {
+  "Data": Array [],
+  "categoryfield": "all",
+  "datefield": "default",
+  "error": "",
+  "loading": false,
+  "orderfield": "default",
+  "searchfield": undefined,
+}
+`;
+
+exports[`All reducers should handle FETCH_ERROR 1`] = `
+Object {
+  "Data": Array [],
+  "categoryfield": "all",
+  "datefield": "default",
+  "error": undefined,
+  "loading": false,
+  "orderfield": "default",
+  "searchfield": "",
+}
+`;
+
+exports[`All reducers should handle FETCH_REQUEST 1`] = `
+Object {
+  "Data": Array [],
+  "categoryfield": "all",
+  "datefield": "default",
+  "error": "",
+  "loading": true,
+  "orderfield": "default",
+  "searchfield": "",
+}
+`;
+
+exports[`All reducers should handle FETCH_TEMPLATE_SUCCESS 1`] = `
+Object {
+  "Data": undefined,
+  "categoryfield": "all",
+  "datefield": "default",
+  "error": "",
+  "loading": false,
+  "orderfield": "default",
+  "searchfield": "",
+}
+`;
+
+exports[`All reducers should return the initial state 1`] = `
+Object {
+  "Data": Array [],
+  "categoryfield": "all",
+  "datefield": "default",
+  "error": "",
+  "loading": false,
+  "orderfield": "default",
+  "searchfield": "",
+}
+`;

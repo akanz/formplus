@@ -6,16 +6,16 @@ import {
   FETCH_TEMPLATE_REQUEST,
   CHANGE_CATEGORY,
   CHANGE_ORDER_FIELD,
-  CHANGE_DATE_FIELD
+  CHANGE_DATE_FIELD,
 } from "./Types";
 
-const initialstate = {
+export const initialstate = {
   searchfield: "",
   loading: false,
   error: "",
-  categoryfield:'all',
-  orderfield:"default",
-  datefield:'default',
+  categoryfield: "all",
+  orderfield: "default",
+  datefield: "default",
   Data: [],
 };
 
@@ -29,7 +29,7 @@ const reducer = (state = initialstate, action) => {
     case FETCH_TEMPLATE_DETAILS:
       return {
         ...state,
-        Data:action.payload
+        Data: action.payload,
       };
     case FETCH_TEMPLATE_REQUEST:
       return {
@@ -48,21 +48,21 @@ const reducer = (state = initialstate, action) => {
         loading: false,
         error: action.payload,
       };
-      case CHANGE_CATEGORY:
-        return{
-            ...state,
-            categoryfield:action.payload
-        };
+    case CHANGE_CATEGORY:
+      return {
+        ...state,
+        categoryfield: action.payload,
+      };
     case CHANGE_ORDER_FIELD:
-        return{
-            ...state,
-            orderfield:action.payload
-        };
+      return {
+        ...state,
+        orderfield: action.payload,
+      };
     case CHANGE_DATE_FIELD:
-        return{
-            ...state,
-            datefield:action.payload
-        }
+      return {
+        ...state,
+        datefield: action.payload,
+      };
     default:
       return state;
   }

@@ -7,7 +7,8 @@ import {
   CHANGE_ORDER_FIELD,
   CHANGE_DATE_FIELD,
   CHANGE_CATEGORY
-} from "./Types";
+} from "./Types"
+import axios from 'axios'
 
 //action creator
 export const changecategory=(category)=>{
@@ -55,12 +56,9 @@ export const fetchtemplatessuccess=(results)=>{
 export const fetchfromapi = () => {
   return (dispatch) => {
       dispatch( fetchtemplatesrequest)
-    fetch(
-      "https://front-end-task-dot-fpls-dev.uc.r.appspot.com/api/v1/public/task_templates"
-    )
-      .then((res) => res.json())
-      .then(result=> dispatch(fetchtemplatessuccess(result)))
-      .catch(error => dispatch(fetchtemplateserror(error)));
+    return axios.get("https://front-end-task-dot-fpls-dev.uc.r.appspot.com/api/v1/public/task_templates")
+      .then(result=> dispatch(fetchtemplatessuccess(result.data)))
+      .catch(error => dispatch(fetchtemplateserror(error.message)));
   };
 };
 
