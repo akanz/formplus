@@ -12,10 +12,10 @@ function Card(props) {
                     {props.info.description}
                 </div>
             </div>
-            <div className='h-1/5 bg-gray-100 text-lightgreen font-medium text-sm p-4 py-2 flex items-center'>
-                    <a href='!#'>
-                        {props.info.link}
-                    </a>
+            <div className='h-1/5 w-full bg-gray-100 text-lightgreen font-medium text-sm p-4 py-2 flex items-center bottom-0 left-0'>
+                <a>
+                    {props.info.link}
+                </a>
             </div>
         </div>
     )
