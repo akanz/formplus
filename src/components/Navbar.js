@@ -3,18 +3,23 @@ import { connect } from "react-redux";
 import { changesearchfield,fetchfromapi, changecategory, changeorderfield, changedatefield } from "../Redux/Actions";
 import search from '../img/search.svg'
 
-function Navbar({ searchvalue, onsearchchange, fetchtemplates, details,changecategory, changingorder, changebydate }) {
+function Navbar({ searchvalue,dateValue, orderValue, onsearchchange, fetchtemplates,changecategory, changingorder, changebydate}) {
   useEffect(() => {
     fetchtemplates();
   }, []);
 
   console.log(searchvalue);
-  //console.log(details)
+  const handleChange =(e)=> {
+    changecategory(e);
+    searchvalue = ''
+    dateValue = 'Default'
+    orderValue = 'Default'
+  }
   return (
     <div>
       <nav className="m-4 mt-8 flow-root">
         <div className="w-full md:w-4/6 lg:w-2/6 lg:float-left">
-          <input
+          <input value={searchvalue}
             onChange={(e) => onsearchchange(e.target.value)}
             type="text"
             placeholder="Search Templates"
@@ -33,7 +38,7 @@ function Navbar({ searchvalue, onsearchchange, fetchtemplates, details,changecat
                   <legend className='mx-1'>
                     category
                   </legend>
-                  <select className="select" onChange={e=>changecategory(e.target.value)}>
+                  <select className="select" onChange={e => handleChange(e.target.value)}>
                     <option value="all">All</option>
                     <option value="education">Education</option>
                     <option value="ecommerce">E-commerce</option>
@@ -45,7 +50,7 @@ function Navbar({ searchvalue, onsearchchange, fetchtemplates, details,changecat
                 <legend className='mx-1'>
                     order
                 </legend>
-                <select className="select" onChange={e=>changingorder(e.target.value)}>
+                <select className="select" value={orderValue} onChange={e=>changingorder(e.target.value)}>
                     <option value="Default">Default</option>
                     <option value="Ascending">Ascending</option>
                     <option value="Descending">Descending</option>
@@ -56,7 +61,7 @@ function Navbar({ searchvalue, onsearchchange, fetchtemplates, details,changecat
                 <legend className='mx-1'>
                     date
                 </legend>
-                <select className="select" onChange={e=>changebydate(e.target.value)}>
+                <select className="select" value={dateValue} onChange={e=>changebydate(e.target.value)}>
                 <option value="Default">Default</option>
                 <option value="Ascending">Ascending</option>
                 <option value="Descending">Descending</option>
@@ -74,7 +79,9 @@ function Navbar({ searchvalue, onsearchchange, fetchtemplates, details,changecat
 const mapStateToProps = (state) => {
   return {
     searchvalue: state.searchfield,
-    details: state.Data
+    dateValue: state.datefield,
+    orderValue: state.orderfield,
+
   };
 };
 
@@ -94,7 +101,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     changebydate:(e)=>{
         dispatch(changedatefield(e))
-    }
+    },
   };
 };
 

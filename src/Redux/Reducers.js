@@ -16,7 +16,7 @@ export const initialstate = {
   categoryfield: "all",
   orderfield: "default",
   datefield: "default",
-  Data: [],
+  Data: [],  
 };
 
 const reducer = (state = initialstate, action) => {
@@ -52,6 +52,9 @@ const reducer = (state = initialstate, action) => {
       return {
         ...state,
         categoryfield: action.payload,
+        orderfield: "default",
+        datefield: "default",
+        searchfield: "",
       };
     case CHANGE_ORDER_FIELD:
       return {

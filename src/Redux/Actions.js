@@ -1,12 +1,11 @@
 import {
   CHANGE_SEARCH_FIELD,
-  FETCH_TEMPLATE_DETAILS,
   FETCH_TEMPLATE_SUCCESS,
   FETCH_TEMPLATE_ERROR,
   FETCH_TEMPLATE_REQUEST,
   CHANGE_ORDER_FIELD,
   CHANGE_DATE_FIELD,
-  CHANGE_CATEGORY
+  CHANGE_CATEGORY,
 } from "./Types"
 import axios from 'axios'
 
@@ -14,7 +13,8 @@ import axios from 'axios'
 export const changecategory=(category)=>{
     return{
         type: CHANGE_CATEGORY,
-        payload: category
+        payload: category,
+        
     }
 }
 export const changeorderfield=(ordervalue)=>{
@@ -34,12 +34,13 @@ export const changesearchfield = (searchvalue) => {
     type: CHANGE_SEARCH_FIELD,
     payload: searchvalue,
   };
-};
+}
+
 export const fetchtemplatesrequest = () => {
   return {
     type: FETCH_TEMPLATE_REQUEST,
   };
-};
+}
 export const fetchtemplateserror =(errormessage)=>{
     return{
         type: FETCH_TEMPLATE_ERROR,

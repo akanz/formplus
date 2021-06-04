@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import SkeletonContainer from "../skeleton/SkeletonContainer";
-import axios from "axios";
 import Pagination from "./Pagination";
 import { connect } from "react-redux";
 import info from "../img/info.svg";
 
-function Content({ data, searchvalue, category, ordervalue, datevalue }) {
+function Content({ data,error, searchvalue, category, ordervalue, datevalue }) {
   let ordersortvalue, datesortvalue;
+  console.log(error)
 
   const filteredData = data.filter((res) => {
       return res.name.search(searchvalue) !== -1;
@@ -81,8 +81,8 @@ function Content({ data, searchvalue, category, ordervalue, datevalue }) {
     <div>
       <div>
         <div className="bg-lightorange text-center font-bold flex justify-center items-center text-sm p-3 my-6 mx-4 md:p-3 md:my-12 lg:p-4">
-          <span className="mx-3">
-            <img className="w-6" src={info} />
+          <span className="mx-1 md:mx-3">
+            <img className="w-16 md:w-8" src={info} />
           </span>
           Tada! Get started with a free template. Can't find what you are
           looking for? Search from 1000 available templates
@@ -103,12 +103,19 @@ function Content({ data, searchvalue, category, ordervalue, datevalue }) {
             ))}
           </div>
         )}
+
         {data <= 0 && (
           <div className="card-container">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((i) => (
               <SkeletonContainer key={i} />
             ))}
           </div>
+        )}
+
+        {data <= 0 && error !='' && (
+            <div className="card-container">
+                <h1 className='text-4xl text-blue-400 font-semibold'>Oops! an error occurred</h1>
+            </div>
         )}
 
         <Pagination
@@ -128,6 +135,7 @@ function Content({ data, searchvalue, category, ordervalue, datevalue }) {
 const mapStateToProps = (state) => {
   return {
     data: state.Data,
+    error: state.error,
     searchvalue: state.searchfield,
     category: state.categoryfield,
     ordervalue: state.orderfield,
