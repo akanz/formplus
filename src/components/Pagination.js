@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Pagination = ({pageAmount, totalContent, paginate, prevPage, pgLimit, maxPgLimit, minPgLimit}) => {
+const Pagination = ({pageAmount, totalContent, paginate, prevPage, maxPgLimit, minPgLimit}) => {
     const pageNumbers = [], totalRows = Math.ceil(totalContent/pageAmount);
     
     for (let i = 1; i <= totalRows; i++) {

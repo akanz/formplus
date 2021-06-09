@@ -78,9 +78,9 @@ function Navbar({ searchvalue,dateValue, orderValue, onsearchchange, fetchtempla
 
 const mapStateToProps = (state) => {
   return {
-    searchvalue: state.searchfield,
-    dateValue: state.datefield,
-    orderValue: state.orderfield,
+    searchvalue: state.others.searchfield,
+    dateValue: state.others.datefield,
+    orderValue: state.others.orderfield,
 
   };
 };

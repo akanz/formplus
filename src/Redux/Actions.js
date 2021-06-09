@@ -6,6 +6,8 @@ import {
   CHANGE_ORDER_FIELD,
   CHANGE_DATE_FIELD,
   CHANGE_CATEGORY,
+  CHANGE_PAGE,
+  PREV_PAGE,
 } from "./Types"
 import axios from 'axios'
 
@@ -36,6 +38,17 @@ export const changesearchfield = (searchvalue) => {
   };
 }
 
+export const changepage =()=> {
+  return {
+    type: CHANGE_PAGE,
+  }
+}
+export const prevpage =()=> {
+   return {
+     type: PREV_PAGE,
+   }
+}
+
 export const fetchtemplatesrequest = () => {
   return {
     type: FETCH_TEMPLATE_REQUEST,
@@ -60,6 +73,7 @@ export const fetchfromapi = () => {
     return axios.get("https://front-end-task-dot-fpls-dev.uc.r.appspot.com/api/v1/public/task_templates")
       .then(result=> dispatch(fetchtemplatessuccess(result.data)))
       .catch(error => dispatch(fetchtemplateserror(error.message)));
-  };
-};
+  }
+}
+
 

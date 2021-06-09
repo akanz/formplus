@@ -3,20 +3,15 @@ import Card from "./Card";
 import SkeletonContainer from "../skeleton/SkeletonContainer";
 import Pagination from "./Pagination";
 import { connect } from "react-redux";
+import { changepage, prevpage } from '../Redux/Actions'
 import Subnav from "./Subnav";
 
-function Content({ data,error, searchvalue, category, ordervalue, datevalue }) {
+function Content({ data,error, searchvalue, category, ordervalue, datevalue,onpagechange,previouspage, page, pageAmount, pgLimit, maxPgLimit, minPgLimit }) {
   let ordersortvalue, datesortvalue;
-  console.log(error)
 
   const filteredData = data.filter((res) => {
       return res.name.search(searchvalue) !== -1;
-    }),
-    [page, setPage] = useState(1),
-    [pageAmount] = useState(15),
-    [pgLimit, setpgLimit] = useState(1),
-    [maxPgLimit, setmaxPgLimit] = useState(1),
-    [minPgLimit, setminPgLimit] = useState(0);
+    })
 
   // sort category
   if (category === "all") {
@@ -61,19 +56,15 @@ function Content({ data,error, searchvalue, category, ordervalue, datevalue }) {
 
   // next page
   const paginate = () => {
-    setPage(page + 1);
     if (page + 1 > maxPgLimit) {
-      setmaxPgLimit(maxPgLimit + pgLimit);
-      setminPgLimit(minPgLimit + pgLimit);
+        onpagechange();
     }
   };
 
   // previous page
   const prevPaginate = () => {
-    setPage(page - 1);
-    if ((page - 1) % pgLimit === 0) {
-      setmaxPgLimit(maxPgLimit - pgLimit);
-      setminPgLimit(minPgLimit - pgLimit);
+    if (page > 1 && ((page - 1) % pgLimit === 0) ) {
+       previouspage();
     }
   };
 
@@ -120,13 +111,29 @@ function Content({ data,error, searchvalue, category, ordervalue, datevalue }) {
 
 const mapStateToProps = (state) => {
   return {
-    data: state.Data,
-    error: state.error,
-    searchvalue: state.searchfield,
-    category: state.categoryfield,
-    ordervalue: state.orderfield,
-    datevalue: state.datefield,
+    data: state.others.Data,
+    error: state.others.error,
+    searchvalue: state.others.searchfield,
+    category: state.others.categoryfield,
+    ordervalue: state.others.orderfield,
+    datevalue: state.others.datefield,
+    page: state.page.page,
+    pageAmount: state.page.pageAmount,
+    pgLimit: state.page.pgLimit,
+    maxPgLimit: state.page.maxPgLimit,
+    minPgLimit: state.page.minPgLimit,
   };
 };
 
-export default connect(mapStateToProps)(Content);
+const mapDispatchToProps =(dispatch)=> {
+   return {
+     onpagechange: ()=> {
+        dispatch(changepage())
+     },
+     previouspage: ()=> {
+       dispatch(prevpage())
+     }
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content);

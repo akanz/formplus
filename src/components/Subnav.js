@@ -13,7 +13,7 @@ function Subnav({category}) {
           looking for? Search from 1000 available templates
         </div>
         <div className="text-gray-600 my-5 mx-4 text-base font-medium flow-root">
-          <div className="float-left">{category} templates</div>
+          <div className="float-left capitalize">{category} templates</div>
           <div className="float-right text-xs text-gray-400">
             2000 templates
           </div>
